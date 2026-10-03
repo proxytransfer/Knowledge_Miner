@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Knowledge Miner — systematically explore what a model can access before external retrieval.">
+<title>Knowledge Miner</title>
+<style>
+:root{font-family:Inter,system-ui,sans-serif;color:#152436;background:#f7f9fb}
+body{margin:0}.wrap{max-width:980px;margin:auto;padding:64px 24px}
+h1{font-size:clamp(42px,8vw,82px);line-height:.95;margin:.2em 0}
+h2{margin-top:48px}.tag{font-family:ui-monospace,monospace;color:#506278}
+.card{background:#fff;border:1px solid #dce3ea;border-radius:16px;padding:24px;margin:16px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.pill{display:inline-block;border:1px solid #b8c5d1;border-radius:999px;padding:6px 10px;margin:4px;font-size:13px}
+pre{overflow:auto;background:#102035;color:#eef5fa;padding:18px;border-radius:12px}
+.muted{color:#5a6b7b}.price{font-size:32px;font-weight:700}
+</style>
+</head>
+<body><main class="wrap">
+<div class="tag">PARAMETRIC KNOWLEDGE EXPLORATION</div>
+<h1>Knowledge Miner</h1>
+<p class="muted">Mine what a model can access before teaching it anything new.</p>
+
+<div class="grid">
+<div class="card"><strong>Black-box first</strong><p>Text input/output is enough for the universal workflow.</p></div>
+<div class="card"><strong>Local gaps</strong><p>“This model did not expose it” never becomes “it does not exist”.</p></div>
+<div class="card"><strong>Provenance</strong><p>Knowledge remains connected to its observed origin.</p></div>
+<div class="card"><strong>Mine then fuse</strong><p>Models are explored independently before optional fusion.</p></div>
+</div>
+
+<h2>Flow</h2>
+<pre>MODEL + TOPIC
+  -> controlled exploration
+  -> claims + branches + local gaps + conflicts
+  -> Knowledge Map
+  -> Work Context</pre>
+
+<h2>Mining profiles</h2>
+<div>
+<span class="pill">M1 Quick</span>
+<span class="pill">M2 Standard</span>
+<span class="pill">M3 Deep</span>
+<span class="pill">M4 Extended</span>
+<span class="pill">M5 Research</span>
+</div>
+
+<h2>SaaS</h2>
+<div class="card">
+<div class="price">$20 / month</div>
+<p>Initial base pricing. Production access will be released after billing, entitlement and security gates are validated.</p>
+</div>
+
+<p class="muted">The proprietary mining engine is not distributed in this public repository.</p>
+</main></body></html>
