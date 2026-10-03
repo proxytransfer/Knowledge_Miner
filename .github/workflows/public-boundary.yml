@@ -1,0 +1,49 @@
+name: Public Boundary
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enforce public/private boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          forbidden_paths=(src include tests CMakeLists.txt Dockerfile)
+          for p in "${forbidden_paths[@]}"; do
+            if [ -e "$p" ]; then
+              echo "PRIVATE BOUNDARY VIOLATION: $p"
+              exit 1
+            fi
+          done
+
+          if find . -type f \( -name '*.cpp' -o -name '*.cc' -o -name '*.cxx' -o -name '*.hpp' \) -print -quit | grep -q .; then
+            echo "PRIVATE BOUNDARY VIOLATION: C/C++ implementation found"
+            exit 1
+          fi
+
+          m1="gap""-reformulation"
+          m2="atomize""-json-v0.1"
+          m3="OpenAICompatible""Adapter"
+          for marker in "$m1" "$m2" "$m3"; do
+            if grep -RIn --exclude-dir=.git --exclude='public-boundary.yml' -- "$marker" .; then
+              echo "PRIVATE MARKER FOUND: $marker"
+              exit 1
+            fi
+          done
+
+          if grep -RIE --exclude-dir=.git --exclude='public-boundary.yml'             '(-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----|sk-[A-Za-z0-9_-]{16,})' .; then
+            echo "POSSIBLE SECRET FOUND"
+            exit 1
+          fi
+
+          echo "Public boundary PASS"
