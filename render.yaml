@@ -2,7 +2,7 @@ services:
   - type: web
     name: knowledge-miner-public
     runtime: static
-    buildCommand: echo "Static site ready"
+    buildCommand: bash scripts/check-public-boundary.sh
     staticPublishPath: ./site
     headers:
       - path: /*
